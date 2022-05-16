@@ -1,0 +1,30 @@
+version: '3.3'
+
+services: 
+  wordpress:
+    image: wordpress
+    restart: always 
+    working_dir: /var/www/html 
+    links: 
+      - wordpressdb-stugel:mysql 
+    ports: 
+      - 8080:80
+    volumes: 
+      - ./opt/wp-content:/var/www/html/wp-content
+
+    environment: 
+          WORDPRESS_DB_HOST: wordpressdb-stugel:3306 
+          WORDPRESS_DB_USER: wordpress 
+          WORDPRESS_DB_PASSWORD: wordpress 
+          WORPDRESS_DB_NAME: wordpress 
+
+  wordpressdb-stugel: 
+    image: mariadb:latest 
+    restart: always 
+    volumes: 
+      - ./opt/mysql:/var/lib/mysql 
+    environment: 
+          MYSQL_ROOT_PASSWORD: secret 
+          MYSQL_DATABASE: wordpress 
+          MYSQL_USER: wordpress 
+          MYSQL_PASSWORD: wordpress 
