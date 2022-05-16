@@ -2,7 +2,7 @@ version: '3.3'
 
 services: 
   wordpress:
-    image: wordpress
+    image: joomla
     restart: always 
     working_dir: /var/www/html 
     links: 
@@ -13,10 +13,10 @@ services:
       - ./opt/wp-content:/var/www/html/wp-content
 
     environment: 
-          WORDPRESS_DB_HOST: wordpressdb-stugel:3306 
-          WORDPRESS_DB_USER: wordpress 
-          WORDPRESS_DB_PASSWORD: wordpress 
-          WORPDRESS_DB_NAME: wordpress 
+          JOOMLA_DB_HOST: wordpressdb-stugel:3306 
+          JOOMLA_DB_USER: wordpress 
+          JOOMLA_DB_PASSWORD: wordpress 
+          JOOMLA_DB_NAME: wordpress 
 
   wordpressdb-stugel: 
     image: mariadb:latest 
